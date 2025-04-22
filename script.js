@@ -62,4 +62,24 @@ document.addEventListener('DOMContentLoaded', function() {
         raspar(x, y);
     }, { passive: false });
     
+    function obterCoordenadas(evento) {
+        const ret = tela.getBoundingClientRect();
+    
+        const proporcaoX = tela.width / ret.width;
+        const proporcaoY = tela.height / ret.height;
+    
+        let x, y;
+    
+        if (evento.touches) {
+            const toque = evento.touches[0];
+            x = (toque.clientX - ret.left) * proporcaoX;
+            y = (toque.clientY - ret.top) * proporcaoY;
+        } else {
+            x = (evento.clientX - ret.left) * proporcaoX;
+            y = (evento.clientY - ret.top) * proporcaoY;
+        }
+    
+        return { x, y };
+    }
+    
 });
