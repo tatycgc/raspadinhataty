@@ -38,19 +38,28 @@ document.addEventListener('DOMContentLoaded', function() {
         
     });
 
-    tela.addEventListener('touchmove', function(e) {
-        e.preventDefault(); // Impede o scroll da tela enquanto desenha
+    function raspar(x, y) {
+        contexto.beginPath();
+        contexto.arc(x, y, 30, 0, 2 * Math.PI); 
+        contexto.fill();
+    }
     
+    // Mouse
+    tela.addEventListener('mousemove', function(e) {
         const retangulo = tela.getBoundingClientRect();
-        const toque = e.touches[0]; // Primeiro dedo na tela
+        const x = e.clientX - retangulo.left;
+        const y = e.clientY - retangulo.top;
+        raspar(x, y);
+    });
     
+    // Toque (mobile)
+    tela.addEventListener('touchmove', function(e) {
+        e.preventDefault(); // impede o scroll ao raspar
+        const retangulo = tela.getBoundingClientRect();
+        const toque = e.touches[0];
         const x = toque.clientX - retangulo.left;
         const y = toque.clientY - retangulo.top;
+        raspar(x, y);
+    }, { passive: false });
     
-        contexto.beginPath();
-        contexto.arc(x, y, 30, 0, 2 * Math.PI);
-        contexto.fill();
-    }, { passive: false }); // Necessário para que o preventDefault funcione
-
-
 });
