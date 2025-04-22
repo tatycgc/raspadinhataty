@@ -1,0 +1,28 @@
+body, html {
+    margin: 0;
+    overflow: hidden;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #e22121;
+}
+
+h1 {
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Responsividade para o canvas */
+canvas {
+    display: block;
+    background-image: url('imagem-inferior.jpg');
+    background-size: cover;
+    border: 1px solid #ccc;
+    width: 90vw;   /* 90% da largura da viewport */
+    height: 90vw;  /* Mantém proporção quadrada */
+    max-width: 500px;
+    max-height: 500px;
+}
